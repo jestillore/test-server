@@ -14,3 +14,5 @@ use Illuminate\Http\Request;
 */
 
 Route::post('locations', 'LocationsController@store');
+Route::post('uploads', 'UploadsController@store');
+Route::delete('uploads/{id}', 'UploadsController@destroy');

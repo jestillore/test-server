@@ -98,5 +98,7 @@ class UploadsController extends Controller
         $upload = Upload::findOrFail($id);
         Storage::delete($upload->location);
         $upload->delete();
+
+        return redirect()->to('uploads');
     }
 }

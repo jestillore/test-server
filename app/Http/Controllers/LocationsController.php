@@ -16,7 +16,8 @@ class LocationsController extends Controller
      */
     public function index()
     {
-        //
+        $checkins = Location::paginate(10);
+        return view('checkins')->with('checkins', $checkins);
     }
 
     /**

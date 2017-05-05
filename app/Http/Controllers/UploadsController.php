@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
+use Storage;
+use App\Upload;
 
 class UploadsController extends Controller
 {
@@ -43,7 +45,12 @@ class UploadsController extends Controller
             return response()->json($validator->errors(), 400);
         }
 
-        $request->photo->store('uploads');
+        $path = $request->photo->store('uploads');
+
+        $upload = new Upload;
+        $upload->location = $path;
+        $upload->url = url('storage/' . $path);
+        $upload->save();
     }
 
     /**
@@ -88,6 +95,8 @@ class UploadsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $upload = Upload::findOrFail($id);
+        Storage::delete($upload->location);
+        $upload->delete();
     }
 }

@@ -67,7 +67,26 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('js/select2.min.js') }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(document).on('click', '.table-actions .delete', function (e) {
+                var url = $(this).attr('href');
+                var location = window.location.href;
+
+                $.ajax({
+                    url: url,
+                    type: 'DELETE',
+                    data: {
+                        _token: window.Laravel.csrfToken
+                    },
+                    success: function(result) {
+                        window.location.href = location;
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
     @yield('scripts')
 
 </body>

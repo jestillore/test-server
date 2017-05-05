@@ -16,7 +16,8 @@ class UploadsController extends Controller
      */
     public function index()
     {
-        //
+        $uploads = Upload::paginate(10);
+        return view('uploads')->with('uploads', $uploads);
     }
 
     /**
@@ -51,6 +52,8 @@ class UploadsController extends Controller
         $upload->location = $path;
         $upload->url = url('storage/' . $path);
         $upload->save();
+
+        return $upload;
     }
 
     /**
@@ -98,7 +101,5 @@ class UploadsController extends Controller
         $upload = Upload::findOrFail($id);
         Storage::delete($upload->location);
         $upload->delete();
-
-        return redirect()->to('uploads');
     }
 }

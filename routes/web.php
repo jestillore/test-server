@@ -15,8 +15,5 @@ Route::get('/', function () {
     return redirect()->to('checkins');
 });
 
-Route::get('checkins', 'LocationsController@index');
-
-Route::get('uploads', function () {
-	return 'uploads';
-});
+Route::resource('checkins', 'LocationsController');
+Route::resource('uploads', 'UploadsController');

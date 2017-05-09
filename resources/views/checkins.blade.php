@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Check-ins
+                    Check-ins (test)
                 </div>
 
                 <div class="panel-body">
